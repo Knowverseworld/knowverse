@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KnowVerse | Knowledge Hub</title>
+
+<style>
+:root {
+    --primary: #173B7A;
+    --accent: #14B8A6;
+    --background: #F5F7FB;
+    --text: #172033;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+}
+header { background: var(--primary); color: white; padding: 20px 6%; }
+nav { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+.logo { font-size: 28px; font-weight: bold; }
+.logo span { color: var(--accent); }
+nav a { color: white; text-decoration: none; margin-left: 16px; }
+.hero { text-align: center; background: white; padding: 55px 20px; }
+.hero h1 { color: var(--primary); font-size: clamp(30px, 5vw, 46px); }
+.hero p { color: #64748b; margin: 10px 0 22px; }
+.search-box { display: flex; max-width: 620px; margin: auto; gap: 8px; }
+input[type="search"] {
+    flex: 1; min-width: 0; padding: 13px;
+    border: 1px solid #d5dce7; border-radius: 8px; font-size: 16px;
+}
+button {
+    border: none; background: var(--accent); color: white;
+    padding: 12px 20px; border-radius: 8px; cursor: pointer;
+}
+main { max-width: 1200px; margin: auto; padding: 35px 20px; }
+h2 { color: var(--primary); margin-bottom: 20px; }
+.categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px; margin-bottom: 40px;
+}
+.category {
+    background: white; border: 1px solid #e2e8f0;
+    border-radius: 12px; padding: 22px; cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+}
+.category:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px #173b7a18;
+}
+.category .icon { font-size: 32px; }
+.category h3 { color: var(--primary); margin: 8px 0; }
+.category p { font-size: 14px; color: #64748b; }
+.articles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 18px;
+}
+.article {
+    background: white; padding: 23px; border-radius: 12px;
+    border: 1px solid #e2e8f0; display: flex;
+    flex-direction: column; align-items: flex-start;
+}
+.tag {
+    background: #e6f7f5; color: #087f75;
+    padding: 4px 9px; border-radius: 20px;
+    font-size: 12px; margin-bottom: 12px;
+}
+.article h3 { color: var(--primary); margin-bottom: 9px; }
+.article p { color: #64748b; font-size: 14px; }
+.article a {
+    display: inline-block; margin-top: auto; padding-top: 14px;
+    color: #1764b0; text-decoration: none; font-weight: bold;
+}
+.article a:hover { text-decoration: underline; }
+#message { margin-top: 12px; color: var(--primary); }
+footer { background: var(--primary); color: white; text-align: center; padding: 24px; margin-top: 30px; }
+@media(max-width:600px) {
+    nav { flex-direction: column; align-items: flex-start; }
+    nav a { margin: 0 12px 0 0; }
+    .search-box { flex-direction: column; }
+}
+</style>
+</head>
+
+<body>
+<header>
+    <nav>
+        <div class="logo">Know<span>Verse</span></div>
+        <div>
+            <a href="#home">Home</a>
+            <a href="#categories">Explore</a>
+            <a href="#articles">Articles</a>
+        </div>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <h1>Know More. Understand Better.</h1>
+    <p>Explore the world, discover new ideas, and learn something every day.</p>
+    <form class="search-box" id="searchForm">
+        <input type="search" id="searchInput" placeholder="Search articles and topics..." aria-label="Search articles">
+        <button type="submit">Search</button>
+    </form>
+    <p id="message" aria-live="polite"></p>
+</section>
+
+<main>
+<section id="categories">
+    <h2>Explore Categories</h2>
+    <div class="categories">
+        <div class="category" data-category="World News">
+            <div class="icon">🌍</div>
+            <h3>World News</h3>
+            <p>Global events, international affairs, and world developments.</p>
+        </div>
+        <div class="category" data-category="Business">
+            <div class="icon">📈</div>
+            <h3>Business</h3>
+            <p>Markets, finance, entrepreneurship, and the economy.</p>
+        </div>
+        <div class="category" data-category="Education">
+            <div class="icon">🎓</div>
+            <h3>Education</h3>
+            <p>Learning resources, useful skills, and career development.</p>
+        </div>
+        <div class="category" data-category="Artificial Intelligence">
+            <div class="icon">🤖</div>
+            <h3>Artificial Intelligence</h3>
+            <p>AI tools, machine learning, and emerging technologies.</p>
+        </div>
+        <div class="category" data-category="Science">
+            <div class="icon">🔬</div>
+            <h3>Science</h3>
+            <p>Space, nature, scientific discoveries, and innovation.</p>
+        </div>
+    </div>
+</section>
+
+<section id="articles">
+    <h2>Explore Articles</h2>
+    <div class="articles" id="articleList">
+
+        <article class="article" data-category="World News">
+            <span class="tag">World News</span>
+            <h3>Understanding Global Affairs</h3>
+            <p>Discover international developments and how events around the world affect people, countries, and economies.</p>
+            <a href="https://news.un.org/" target="_blank" rel="noopener noreferrer">Explore UN News →</a>
+        </article>
+
+        <article class="article" data-category="World News">
+            <span class="tag">World News</span>
+            <h3>World News and Current Events</h3>
+            <p>Read international reporting and explore major events happening around the world.</p>
+            <a href="https://www.bbc.com/news/world" target="_blank" rel="noopener noreferrer">Read World News →</a>
+        </article>
+
+        <article class="article" data-category="Business">
+            <span class="tag">Business</span>
+            <h3>How Does the Stock Market Work?</h3>
+            <p>Understand stocks, exchanges, investors, and the basic principles of financial markets.</p>
+            <a href="https://www.investor.gov/" target="_blank" rel="noopener noreferrer">Explore Investing →</a>
+        </article>
+
+        <article class="article" data-category="Business">
+            <span class="tag">Business</span>
+            <h3>Learn About India's Economy</h3>
+            <p>Explore economic indicators, monetary policy, and the role of the Reserve Bank of India.</p>
+            <a href="https://www.rbi.org.in/" target="_blank" rel="noopener noreferrer">Visit RBI →</a>
+        </article>
+
+        <article class="article" data-category="Education">
+            <span class="tag">Education</span>
+            <h3>Learn New Skills Online</h3>
+            <p>Explore free learning resources covering mathematics, science, computing, and more.</p>
+            <a href="https://www.khanacademy.org/" target="_blank" rel="noopener noreferrer">Start Learning →</a>
+        </article>
+
+        <article class="article" data-category="Education">
+            <span class="tag">Education</span>
+            <h3>Online Courses in India</h3>
+            <p>Discover online courses and educational resources offered through India's SWAYAM platform.</p>
+            <a href="https://swayam.gov.in/" target="_blank" rel="noopener noreferrer">Explore Courses →</a>
+        </article>
+
+        <article class="article" data-category="Artificial Intelligence">
+            <span class="tag">Artificial Intelligence</span>
+            <h3>What Is Artificial Intelligence?</h3>
+            <p>Learn how AI systems process information, recognize patterns, and help people solve problems.</p>
+            <a href="https://www.ibm.com/think/topics/artificial-intelligence" target="_blank" rel="noopener noreferrer">Learn About AI →</a>
+        </article>
+
+        <article class="article" data-category="Artificial Intelligence">
+            <span class="tag">Artificial Intelligence</span>
+            <h3>Explore Google's AI Resources</h3>
+            <p>Discover AI research, tools, and educational resources from Google.</p>
+            <a href="https://ai.google/" target="_blank" rel="noopener noreferrer">Explore Google AI →</a>
+        </article>
+
+        <article class="article" data-category="Science">
+            <span class="tag">Science</span>
+            <h3>Explore Our Solar System</h3>
+            <p>Discover planets, moons, asteroids, and the latest scientific information about our solar system.</p>
+            <a href="https://science.nasa.gov/solar-system/" target="_blank" rel="noopener noreferrer">Explore Space →</a>
+        </article>
+
+        <article class="article" data-category="Science">
+            <span class="tag">Science</span>
+            <h3>Discover NASA's Latest Science</h3>
+            <p>Explore space missions, Earth science, astronomy, and scientific discoveries.</p>
+            <a href="https://science.nasa.gov/" target="_blank" rel="noopener noreferrer">Visit NASA Science →</a>
+        </article>
+
+    </div>
+</section>
+</main>
+
+<footer>
+    <p>© 2026 KnowVerse | Knowledge for Everyone</p>
+</footer>
+
+<script>
+const searchInput = document.getElementById("searchInput");
+const searchForm = document.getElementById("searchForm");
+const message = document.getElementById("message");
+const articles = [...document.querySelectorAll(".article")];
+const categories = [...document.querySelectorAll(".category")];
+
+function filterArticles(query) {
+    const term = query.trim().toLowerCase();
+    let count = 0;
+
+    articles.forEach(article => {
+        const matches = !term ||
+            article.textContent.toLowerCase().includes(term) ||
+            article.dataset.category.toLowerCase().includes(term);
+
+        article.style.display = matches ? "flex" : "none";
+        if (matches) count++;
+    });
+
+    message.textContent = term
+        ? (count ? `${count} article(s) found.` : "No matching articles found. Try another search.")
+        : "";
+
+    document.getElementById("articles").scrollIntoView({ behavior: "smooth" });
+}
+
+searchForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+    filterArticles(searchInput.value);
+});
+
+categories.forEach(category => {
+    category.addEventListener("click", function() {
+        searchInput.value = category.dataset.category;
+        filterArticles(category.dataset.category);
+    });
+});
+</script>
+</body>
+</html>
