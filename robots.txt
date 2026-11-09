@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://knowverseworld.github.io/knowverse/sitemap.xml
